@@ -158,3 +158,48 @@ game();
   let score = Math.random() * 10;
   console.log(score >= 5 - goodLuck);
 })(2);
+
+//  Closures
+function retirement(retirementAge) {
+  let a = ' years left until retirement';
+  return function(yearOfBirth) {
+    let age = 2019 - yearOfBirth;
+    console.log(retirementAge - age + a);
+  };
+}
+
+let retirementUs = retirement(66);
+let retirementGermany = retirement(65);
+let retirementIceland = retirement(67);
+
+retirementGermany(1990);
+retirementUs(1990);
+retirementIceland(1990);
+
+// retirement(65)(1989);
+
+function retByCountry(country) {
+  switch (country) {
+    case 'US':
+      retirementAge = 66;
+      break;
+    case 'DE':
+      retirementAge = 67;
+      break;
+    case 'IC':
+      retirementAge = 65;
+      break;
+    default:
+      break;
+  }
+  let a = ' years left until retirement';
+  return function(yearOfBirth) {
+    let age = 2019 - yearOfBirth;
+    console.log(retirementAge - age + a);
+  };
+}
+
+let retUS = retByCountry('US');
+retUS(1970);
+
+retByCountry('DE')(1988);
