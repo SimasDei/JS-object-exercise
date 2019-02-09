@@ -267,5 +267,3 @@ function legalAge(arr, fn) {
   }
   return arrRes;
 }
-
-function calcYears(arr, fn) {}
