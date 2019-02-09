@@ -1,3 +1,4 @@
+/////////////////////////////////
 // ===> Function Constructor <===
 /*
 let dude = {
@@ -49,6 +50,7 @@ let dudette = Object.create(personProto, {
 });
 */
 
+////////////////////////
 // Primitives vs Objects
 let a = 23;
 let b = a;
@@ -63,6 +65,7 @@ let obj2 = obj1;
 obj1.age = 30;
 console.log(obj1.age, obj2.age);
 
+////////////
 // Functions
 let age = 30;
 let obj = {
@@ -77,7 +80,7 @@ function change(a, b) {
 
 change(age, obj);
 
-let years = [1999, 2000, 1942, 2020, 2019];
+let years = [1999, 2000, 1942, 2012, 2019];
 
 function calcArray(arr, fn) {
   let resArray = [];
@@ -115,6 +118,7 @@ console.log(ages);
 console.log(legal);
 console.log(rates);
 
+///////////////////////////////
 // Functions Returning Functions
 function interviewQuestion(job) {
   switch (job) {
@@ -146,6 +150,7 @@ designerQuestion('Dudette');
 
 interviewQuestion('teacher')('Russel Crow');
 
+////////////////////////////////////////////////
 // Immediately Invoked Function Expressions IIFE
 function game() {
   let score = Math.random() * 16;
@@ -159,6 +164,7 @@ game();
   console.log(score >= 5 - goodLuck);
 })(2);
 
+////////////
 //  Closures
 function retirement(retirementAge) {
   let a = ' years left until retirement';
@@ -203,3 +209,63 @@ let retUS = retByCountry('US');
 retUS(1970);
 
 retByCountry('DE')(1988);
+
+////////////////////////////////
+// Function Bind, Call and Apply
+let greg = {
+  name: 'Old Greg',
+  age: 99,
+  job: 'SwampThing',
+  presentation: function(style, timeOfDay) {
+    switch (style) {
+      case 'formal':
+        console.log(
+          `Good ${timeOfDay} fellow Fellows of the Fellowship. My name is: ${
+            this.name
+          }, and I'm a ${this.job}. I have been on this planet for ${
+            this.age
+          } years.`
+        );
+        break;
+      case 'friendly':
+        console.log(
+          ` Sup y'all it's me, it's ya boy ${
+            this.name
+          }, it's the perfect ${timeOfDay} to be drinking Baileys from a shoe.`
+        );
+      default:
+        break;
+    }
+  }
+};
+
+greg.presentation('friendly', 'evening');
+
+let layla = {
+  name: 'Layla',
+  age: 22,
+  job: 'designer'
+};
+
+greg.presentation.call(layla, 'formal', 'morning');
+
+// greg.presentation.apply(emily, ['friendly', 'afternoon']);
+
+let gregFriendly = greg.presentation.bind(greg, 'friendly');
+
+gregFriendly('afternoon');
+
+laylaFriendly = greg.presentation.bind(layla, 'friendly');
+
+laylaFriendly('evening');
+
+function legalAge(arr, fn) {
+  let arrRes = [];
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    arrRes.push(fn(element));
+  }
+  return arrRes;
+}
+
+function calcYears(arr, fn) {}
