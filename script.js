@@ -30,7 +30,7 @@ console.log(oldDude);
 */
 
 // ===> Object.create <===
-
+/*
 let personProto = {
   calculateAge: function() {
     console.log(2019 - this.yearOfBirth);
@@ -47,3 +47,70 @@ let dudette = Object.create(personProto, {
   yearOfBirth: { value: 1999 },
   job: { value: 'designer' }
 });
+*/
+
+// Primitives vs Objects
+let a = 23;
+let b = a;
+a = 46;
+
+let obj1 = {
+  name: 'John',
+  age: 28
+};
+
+let obj2 = obj1;
+obj1.age = 30;
+console.log(obj1.age, obj2.age);
+
+// Functions
+let age = 30;
+let obj = {
+  name: 'Dude',
+  city: 'Vilnius'
+};
+
+function change(a, b) {
+  a = 35;
+  b.city = 'Chicago';
+}
+
+change(age, obj);
+
+let years = [1999, 2000, 1942, 2020, 2019];
+
+function calcArray(arr, fn) {
+  let resArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    let element = arr[i];
+    resArray.push(fn(element));
+  }
+  return resArray;
+}
+
+function calculateAge(el) {
+  result = 2019 - el;
+  if (result < 0) {
+    return 'Who cares about the future.';
+  }
+  return result;
+}
+
+function isLegal(el) {
+  return el >= 18;
+}
+
+function maxHeartRate(el) {
+  if (el >= 18 && el <= 81) {
+    return Math.round(206.9 - 0.67 * el);
+  } else {
+    return -1;
+  }
+}
+
+let ages = calcArray(years, calculateAge);
+let legal = calcArray(ages, isLegal);
+let rates = calcArray(ages, maxHeartRate);
+console.log(ages);
+console.log(legal);
+console.log(rates);
