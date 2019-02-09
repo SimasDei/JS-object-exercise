@@ -1,5 +1,5 @@
-// Function Constructor
-
+// ===> Function Constructor <===
+/*
 let dude = {
   name: 'Dude Bro',
   yearOfBirth: 2000,
@@ -27,3 +27,23 @@ dudette.calculateAge();
 oldDude.calculateAge();
 
 console.log(oldDude);
+*/
+
+// ===> Object.create <===
+
+let personProto = {
+  calculateAge: function() {
+    console.log(2019 - this.yearOfBirth);
+  }
+};
+
+let dude = Object.create(personProto);
+dude.name = 'Dude';
+dude.yearOfBirth = 2000;
+dude.job = 'sloth';
+
+let dudette = Object.create(personProto, {
+  name: { value: 'Dudette' },
+  yearOfBirth: { value: 1999 },
+  job: { value: 'designer' }
+});
