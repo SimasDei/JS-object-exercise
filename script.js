@@ -114,3 +114,47 @@ let rates = calcArray(ages, maxHeartRate);
 console.log(ages);
 console.log(legal);
 console.log(rates);
+
+// Functions Returning Functions
+function interviewQuestion(job) {
+  switch (job) {
+    case 'designer':
+      return function(name) {
+        console.log(name + " A Designer? It's a Job you say? Coool...");
+      };
+      break;
+    case 'teacher':
+      return function(name) {
+        console.log(name + ' Can you teach someone to become a Jedi?');
+      };
+
+    default:
+      return function(name) {
+        console.log('Ahoy there o/' + name);
+      };
+      break;
+  }
+}
+
+let teacherQuestion = interviewQuestion('teacher');
+
+teacherQuestion('Dude');
+
+let designerQuestion = interviewQuestion('designer');
+
+designerQuestion('Dudette');
+
+interviewQuestion('teacher')('Russel Crow');
+
+// Immediately Invoked Function Expressions IIFE
+function game() {
+  let score = Math.random() * 16;
+  console.log(score >= 5);
+}
+
+game();
+
+(function(goodLuck) {
+  let score = Math.random() * 10;
+  console.log(score >= 5 - goodLuck);
+})(2);
