@@ -40,11 +40,19 @@
 
   let questions = [q1, q2, q3];
 
-  let n = Math.floor(Math.random() * questions.length);
+  function nextQuestion() {
+    let n = Math.floor(Math.random() * questions.length);
 
-  questions[n].displayQuestion();
+    questions[n].displayQuestion();
 
-  let answer = +prompt('Select an Answer');
+    let answer = prompt('Select an Answer');
 
-  questions[n].checkAnswer(answer);
+    if (answer !== 'exit') {
+      questions[n].checkAnswer(parseInt(answer));
+
+      nextQuestion();
+    }
+  }
+
+  nextQuestion();
 })();
